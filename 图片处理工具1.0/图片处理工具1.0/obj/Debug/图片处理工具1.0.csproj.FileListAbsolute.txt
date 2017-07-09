@@ -1,0 +1,9 @@
+F:\c#project\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.exe.config
+F:\c#project\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.exe
+F:\c#project\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.pdb
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.csprojResolveAssemblyReference.cache
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1._0.Form1.resources
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1._0.Properties.Resources.resources
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.csproj.GenerateResource.Cache
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.exe
+F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.pdb
