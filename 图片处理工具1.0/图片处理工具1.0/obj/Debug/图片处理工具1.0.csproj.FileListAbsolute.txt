@@ -7,3 +7,12 @@ F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理�
 F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.csproj.GenerateResource.Cache
 F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.exe
 F:\c#project\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.pdb
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.exe.config
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.exe
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\bin\Debug\图片处理工具1.0.pdb
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1._0.Form1.resources
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1._0.Properties.Resources.resources
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.csproj.GenerateResource.Cache
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.exe
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.pdb
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Debug\图片处理工具1.0.csprojResolveAssemblyReference.cache

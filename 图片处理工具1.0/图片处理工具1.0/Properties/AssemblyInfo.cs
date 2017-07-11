@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("图片处理工具1.0")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("用于筛选各种不合格图片信息")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("图片处理工具1.0")]
