@@ -37,9 +37,7 @@ namespace PicTool
         {
 
             if (picNamesList.Count > 0) return;
-
-            isCheck = checkBox1.Checked;//是否勾选，默认为true
-
+            
             String infoDir = "info.txt";
             StreamReader reader = new StreamReader(infoDir);
 
@@ -181,6 +179,7 @@ namespace PicTool
         {
             clearDatas();
 
+            isCheck = checkBox1.Checked;//是否勾选，默认为true
             //开始检测图片
             String dir = textBox1.Text;
             DirectoryInfo folders = new DirectoryInfo(dir);
