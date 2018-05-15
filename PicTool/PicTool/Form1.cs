@@ -215,33 +215,27 @@ namespace PicTool
             {//检测是否缺失文件
 
                 DirectoryInfo lastPath = checkLastPath(files);
+                
+                if (lastPath != null && !parentPath.Contains(lastPath.FullName)) {
 
-                if (lastPath != null) {
+                    parentPath.Add(lastPath.FullName);
 
                     String picPath = checkMissingPic(lastPath);//检测是否缺失图片
                     
-                       if (picPath != "")
+                    if (picPath != "")
                         {
-                           if (!parentPath.Contains(picPath))
-                            {
-                               String name = Path.GetFileNameWithoutExtension(picPath);
-
+                          
+                            String name = Path.GetFileNameWithoutExtension(picPath);
+                               
                             if (singlePicNamesList.Contains(name))
                             {
 
                                 InfoBean infoBean = singlePicInfo[name];
                                 checkSiglePicInfo(picPath, infoBean);
-                            }
-                            else {
-
-                                listBox1.Items.Add("多余文件:" + picPath);
-                            }
-                               
-                            }
-                        parentPath.Add(picPath);
+                            
+                           }
                     }
                         
-
                 }
                     
             }
@@ -443,12 +437,18 @@ namespace PicTool
                     FileInfo fileInfo = item as FileInfo;
                     String name = Path.GetFileNameWithoutExtension(fileInfo.FullName);
 
-                    bool isContain = singlePicNamesList.Contains("1");
+                    Console.WriteLine("name:" + name);
+                    //bool isContain = singlePicNamesList.Contains("1");
 
                     if (singlePicNamesList.Contains(name))
                     {
                         picPath = fileInfo.FullName;
                         len += 1;
+                    }
+                    else
+                    {
+                        if(Path.GetExtension(fileInfo.FullName) != ".db")
+                            listBox1.Items.Add("多余文件:" + fileInfo.FullName);
                     }
 
 
