@@ -1,0 +1,9 @@
+F:\VSProject\PicTool\PicTool\bin\Release\PicTool.exe.config
+F:\VSProject\PicTool\PicTool\bin\Release\PicTool.exe
+F:\VSProject\PicTool\PicTool\bin\Release\PicTool.pdb
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.Form1.resources
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.Properties.Resources.resources
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.csproj.GenerateResource.Cache
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.exe
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.pdb
+F:\VSProject\PicTool\PicTool\obj\Release\PicTool.csprojResolveAssemblyReference.cache

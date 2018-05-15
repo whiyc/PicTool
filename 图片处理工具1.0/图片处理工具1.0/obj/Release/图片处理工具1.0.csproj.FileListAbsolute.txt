@@ -6,3 +6,4 @@ F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Release\图�
 F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Release\图片处理工具1.0.csproj.GenerateResource.Cache
 F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Release\图片处理工具1.0.exe
 F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Release\图片处理工具1.0.pdb
+F:\picTool\PicTool\图片处理工具1.0\图片处理工具1.0\obj\Release\图片处理工具1.0.csprojResolveAssemblyReference.cache

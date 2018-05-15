@@ -26,13 +26,17 @@ namespace 图片处理工具1._0
         private List<String> picNamesFix = new List<string>();
         //检查图片是否缺图
         private List<String> regularPicNames = new List<string>();
+        //用于保存出错的文件夹路径
+        private List<String> errorPath = new List<string>();
 
         //限制高度
         private long picLimteHeight;
 
+
         public Form1()
         {
             InitializeComponent();
+            
             InitInfo();
         }
 
@@ -40,6 +44,8 @@ namespace 图片处理工具1._0
         {
 
             if (listBox1.Items.Count > 0) listBox1.Items.Clear();
+
+            errorPath.Clear();
 
             String dir = textBox1.Text;
             DirectoryInfo folders = new DirectoryInfo(dir);
@@ -63,16 +69,16 @@ namespace 图片处理工具1._0
 
         private void InitPicExten()
         {
-            picExten.Add(".png");
+            //picExten.Add(".png");
             picExten.Add(".jpg");
-            picExten.Add(".jpeg");
-            picExten.Add(".bmp");
-            picExten.Add(".gif");
+           // picExten.Add(".jpeg");
+           // picExten.Add(".bmp");
+           // picExten.Add(".gif");
             picExten.Add(".JPG");
-            picExten.Add(".PNG");
-            picExten.Add(".JPEG");
-            picExten.Add(".BMP");
-            picExten.Add(".GIF");
+           // picExten.Add(".PNG");
+           // picExten.Add(".JPEG");
+           // picExten.Add(".BMP");
+           // picExten.Add(".GIF");
 
 
         }
@@ -84,8 +90,8 @@ namespace 图片处理工具1._0
             regularPicNames.Add("2");
             regularPicNames.Add("3");
             regularPicNames.Add("4");
-            regularPicNames.Add("5");
-            regularPicNames.Add("7");
+            //regularPicNames.Add("5");
+            //regularPicNames.Add("7");
             regularPicNames.Add("15");
             regularPicNames.Add("16");
             regularPicNames.Add("601");
@@ -94,8 +100,8 @@ namespace 图片处理工具1._0
             picNamesFix.Add("2");
             picNamesFix.Add("3");
             picNamesFix.Add("4");
-            picNamesFix.Add("5");
-            picNamesFix.Add("7");
+            //picNamesFix.Add("5");
+           // picNamesFix.Add("7");
             picNamesFix.Add("15");
             picNamesFix.Add("16");
 
@@ -126,14 +132,13 @@ namespace 图片处理工具1._0
                 param.Add(int.Parse(widthStr[x]), heightAndSize);
             }
 
-
             //Console.WriteLine(widthStr[0]+ widthStr[1]+ widthStr[2]);
 
         }
 
         private void ListFiles(FileSystemInfo info)
         {
-
+            
             if (!info.Exists) return;
 
             DirectoryInfo dir = info as DirectoryInfo;
@@ -142,12 +147,41 @@ namespace 图片处理工具1._0
 
             FileSystemInfo[] files = dir.GetFileSystemInfos();
 
+            //FileSystemInfo[] picFiles = dir.GetFileSystemInfos("*.jpg");
+
+            
+            //if (picFiles.Length != 0)
+            //{
+            //    int filesLength = 0;
+
+            //    if (IncludeDB(files)) filesLength = files.Length - 1;
+
+            //    else filesLength = files.Length;
+
+            //    if (picFiles.Length == filesLength )//说明这是最后一层目录，上一层目录必须要有一张 .jgp图片
+            //    {
+            //        if (dir.Parent.GetFileSystemInfos("*.jpg").Length != 1) {
+
+            //            if (!errorPath.Contains(dir.Parent.FullName)) {
+
+            //                errorPath.Add(dir.Parent.FullName);
+            //                listBox1.Items.Add("缺少对应图片或有多余图片，目录:" + dir.Parent.FullName);
+            //            }
+                        
+            //        }
+
+                    
+            //    }
+
+
+            //}
+
             List<String> picNames = new List<string>();
 
             for (int i = 0; i < files.Length; i++)
             {
                 FileInfo file = files[i] as FileInfo;
-
+                
                 if (file != null)
                 {
 
@@ -172,9 +206,20 @@ namespace 图片处理工具1._0
                 }
                 else ListFiles(files[i]);
             }
+   
+           checkPic(picNames);
 
-            checkPic(picNames);
+        }
 
+        private bool IncludeDB(FileSystemInfo[] files) {
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo file = files[i] as FileInfo;
+                if (file !=null && file.Extension.Equals(".db")) return true;
+                
+            }
+            return false;
         }
 
         private void checkPic(List<String> picNames)
@@ -182,7 +227,41 @@ namespace 图片处理工具1._0
 
             if (picNames.Count <= 0) return;
 
+            String parentRoot = Path.GetDirectoryName(picNames.ElementAt(0));
+
+            DirectoryInfo folders = new DirectoryInfo(parentRoot);
+
+            FileSystemInfo[] files = folders.GetFileSystemInfos();
+
+            //FileSystemInfo[] picFiles = folders.GetFileSystemInfos("*.jpg");
+
+            //bool isFileAndFiles = false;
+
+            //if (picFiles.Length == 1)
+            //{
+                
+            //    isFileAndFiles = true;
+            //}
+            //else
+            //{
+
+            //    String path = Path.GetDirectoryName(picNames.ElementAt(0));
+            //    checkMissingPic(picNames, path);
+            //}
+
+        
+
             String path = Path.GetDirectoryName(picNames.ElementAt(0));
+            checkMissingPic(picNames, path);
+
+            checkPicInfo(picNames, false);
+
+            Application.DoEvents();
+
+        }
+
+        private void checkMissingPic(List<string> picNames, string path)
+        {
             List<String> temp = new List<String>(regularPicNames);
 
             for (int i = 0; i < picNames.Count; i++)
@@ -192,7 +271,7 @@ namespace 图片处理工具1._0
 
                 String pathWithoutExten = Path.GetFileNameWithoutExtension(picNames.ElementAt(i));
                 //如果
-                if (regularPicNames.Contains(pathWithoutExten))
+                if (temp.Contains(pathWithoutExten))
                 {
                     temp.RemoveAt(temp.IndexOf(pathWithoutExten));
                 }
@@ -209,14 +288,9 @@ namespace 图片处理工具1._0
                 }
 
             }
-
-            checkPicInfo(picNames);
-
-            Application.DoEvents();
-
         }
 
-        private void checkPicInfo(List<string> temp)
+        private void checkPicInfo(List<string> temp,bool isFileAndFiles)
         {
             for (int x = 0; x < temp.Count; x++)
             {
@@ -233,7 +307,7 @@ namespace 图片处理工具1._0
 
                 if (name.Equals("1") || name.Equals("2"))
                 {
-                    if (picWidth != 1100 || picHeight != 1390 || picSize > 300 * 1024)
+                    if (picWidth != 1100 || picHeight != 1390 || picSize > 500 * 1024)
                     {
 
                         listBox1.Items.Add("问题图片:" + temp.ElementAt(x) + "---width:" + picWidth + "---height:" + picHeight + "---size:" + picSize / 1024 + "kb");
@@ -242,12 +316,26 @@ namespace 图片处理工具1._0
                 }
                 else if (name.Equals("5") || name.Equals("7"))
                 {
-
-                    if (picWidth != 420 || picHeight != 531 || picSize > 80 * 1024)
+                    if (isFileAndFiles)
                     {
 
-                        listBox1.Items.Add("问题图片:" + temp.ElementAt(x) + "---width:" + picWidth + "---height:" + picHeight + "---size:" + picSize / 1024 + "kb");
+                        if (picWidth != 1100 || picHeight != 1390 || picSize > 500 * 1024)
+                        {
+
+                            listBox1.Items.Add("问题图片:" + temp.ElementAt(x) + "---width:" + picWidth + "---height:" + picHeight + "---size:" + picSize / 1024 + "kb");
+                        }
+
                     }
+                    else {
+
+                        if (picWidth != 420 || picHeight != 531 || picSize > 80 * 1024)
+                        {
+
+                            listBox1.Items.Add("问题图片:" + temp.ElementAt(x) + "---width:" + picWidth + "---height:" + picHeight + "---size:" + picSize / 1024 + "kb");
+                        }
+                    }
+
+                    
                 }
                 else
                 {
@@ -279,6 +367,10 @@ namespace 图片处理工具1._0
 
 
                     }
+                    else {
+
+                        listBox1.Items.Add("问题图片:" + temp.ElementAt(x) + "---width:" + picWidth + "---height:" + picHeight + "---size:" + picSize / 1024 + "kb");
+                    }
                 }
 
                 image.Dispose();
@@ -297,9 +389,22 @@ namespace 图片处理工具1._0
             {
 
                 String path = this.listBox1.SelectedItem.ToString();
+
+                String filePath = "";
+
                 int start = path.IndexOf(':') + 1;
-                int end = path.LastIndexOf('\\');
-                String filePath = path.Substring(start, end - start);
+                
+                if (path.StartsWith("缺少"))
+                {
+
+                    filePath = path.Substring(start);
+                }
+                else {
+
+                    int end = path.LastIndexOf('\\');
+                    filePath = path.Substring(start, end - start);
+                }
+                 
                 //MessageBox.Show("end"+end);
                 //MessageBox.Show(filePath);
                 System.Diagnostics.Process.Start(filePath);
@@ -344,5 +449,22 @@ namespace 图片处理工具1._0
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
         }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+
+            Form1 form1 = (Form1)sender;
+
+            //Console.WriteLine("form1_width:" + form1.Width + "---form1_height:" + Height);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Form1 form1 = (Form1)sender;
+            //form1.Width = 1351;
+            //form1.Height = 768;
+        }
+
     }
 }
